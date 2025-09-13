@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1 class="page-title">Profiles</h1>
+
+<!-- User Info -->
+<div class="user-info">
+    <p><strong>Name:</strong> {{ user.FirstName }} {{ user.LastName }}</p>
+    <p><strong>Email:</strong> {{ user.Email }}</p>
+    <p><strong>Joined:</strong> {{ user.JoinDate }}</p>
+</div>
+
+<!-- Profiles -->
+<div class="card-container">
+    {% for p in profiles %}
+    <div class="card profile-card">
+        <div class="profile-name">{{ p.ProfileName }}</div>
+        <div class="profile-type">{{ p.ProfileType }}</div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

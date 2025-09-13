@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1 class="page-title">Watch History</h1>
+
+<div class="card-container">
+    {% for w in history %}
+    <div class="card watch-card">
+        {% if w.MovieTitle %}
+            <img src="{{ url_for('static', filename=w.MoviePoster) }}" alt="{{ w.MovieTitle }}">
+            <h3>{{ w.MovieTitle }}</h3>
+        {% else %}
+            <img src="{{ url_for('static', filename=w.SeriesPoster) }}" alt="{{ w.SeriesTitle }}">
+            <h3>{{ w.SeriesTitle }} - {{ w.EpisodeTitle }}</h3>
+        {% endif %}
+        <p><strong>Watched:</strong> {{ w.DurationWatched }} min</p>
+        <p><strong>Date:</strong> {{ w.WatchDate }}</p>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

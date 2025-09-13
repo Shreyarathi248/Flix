@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="movie-details-container">
+    <div class="movie-poster">
+        <img src="{{ url_for('static', filename=movie.PosterURL) }}" alt="{{ movie.Title }}">
+    </div>
+    <div class="movie-info">
+        <h1>{{ movie.Title }}</h1>
+        <p><strong>Release Date:</strong> {{ movie.ReleaseDate }}</p>
+        <p><strong>Genre:</strong> {{ movie.Genre }}</p>
+        <p><strong>Rating:</strong> {{ avg_rating }}</p>
+        <p><strong>Actors:</strong>
+            {% for actor in actors %}
+                {{ actor.Actor_Name }}{% if not loop.last %}, {% endif %}
+            {% endfor %}
+        </p>
+        <p>{{ movie.Description }}</p>
+    </div>
+</div>
+{% endblock %}

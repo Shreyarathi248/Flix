@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1 class="page-title">Payments</h1>
+
+<div class="card-container">
+    {% for p in payments %}
+    <div class="card payment-card">
+        <div class="card-content">
+            <p><strong>Plan:</strong> {{ p.PlanName }}</p>
+            <p><strong>Amount:</strong> ₹{{ p.Amount }}</p>
+            <p><strong>Date:</strong> {{ p.PaymentDate }}</p>
+            <p><strong>Method:</strong> {{ p.PaymentMethod }}</p>
+        </div>
+    </div>
+    {% else %}
+    <p>No payments found.</p>
+    {% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1 class="page-title">Trending Now</h1>
+
+<div class="card-container">
+    {% for t in trending %}
+    <div class="card trending-card">
+        <div class="card-content">
+            <p class="movie-title">{{ t.Title }}</p>
+            <p class="views">{{ t.Views }} views</p>
+        </div>
+    </div>
+    {% else %}
+    <p>No trending content found.</p>
+    {% endfor %}
+</div>
+{% endblock %}

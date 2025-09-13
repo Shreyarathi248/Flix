@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="series-page-container">
+    <div class="series-left">
+        <div class="series-poster">
+            <img src="{{ url_for('static', filename=series.PosterURL) }}" alt="{{ series.Title }}">
+        </div>
+        <div class="series-info">
+            <h1>{{ series.Title }}</h1>
+            <p><strong>Release Date:</strong> {{ series.ReleaseDate }}</p>
+            <p><strong>Genre:</strong> {{ series.Genre }}</p>
+            <p><strong>Rating:</strong> {{ avg_rating }}</p>
+            <p><strong>Actors:</strong>
+                {% for actor in actors %}
+                    {{ actor.Actor_Name }}{% if not loop.last %}, {% endif %}
+                {% endfor %}
+            </p>
+            <p>{{ series.Description }}</p>
+        </div>
+    </div>
+
+    <div class="episodes-right">
+        <h2>Episodes</h2>
+        <div class="episodes-container">
+            {% for ep in episodes %}
+            <div class="episode-card">
+                <p><strong>{{ ep.Title }}</strong></p>
+                <p>S{{ ep.SeasonNo }}E{{ ep.EpisodeNo }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{# HERO - show only if trending_item exists #}
+{% if trending_item %}
+<div class="hero-section" style="
+    position: relative;
+    height: 70vh;
+    background: url('{{ url_for('static', filename=trending_item.PosterURL) if trending_item.PosterURL else url_for('static', filename='bg.png') }}') center/cover no-repeat;">
+    <div class="overlay" style="position:absolute;inset:0;background:linear-gradient(90deg, rgba(20,20,20,0.9) 0%, rgba(20,20,20,0.3) 40%, rgba(20,20,20,0.0) 100%);"></div>
+
+    <div class="hero-content" style="position:absolute;left:4%;bottom:18%;color:white;max-width:50%;">
+        <h1 style="font-size:4rem;line-height:1;margin:0 0 10px 0;">{{ trending_item.Title }}</h1>
+        {% if trending_item.Descr %}
+        <p style="font-size:1.1rem;color:#ddd;margin-bottom:16px;max-width:70%;">{{ trending_item.Descr }}</p>
+        {% endif %}
+        {% if trending_type == 'movie' %}
+            <a href="{{ url_for('movie_details', movie_id=trending_item.MovieID) }}" class="btn-hero">▶ Watch Movie</a>
+        {% elif trending_type == 'series' %}
+            <a href="{{ url_for('series_details', series_id=trending_item.SeriesID) }}" class="btn-hero">▶ Watch Series</a>
+        {% endif %}
+    </div>
+</div>
+{% endif %}
+
+{# MOVIES #}
+<h2 class="section-title">Movies</h2>
+<div class="card-container">
+    {% for movie in movies %}
+    <div class="card movie-card" onclick="location.href='{{ url_for('movie_details', movie_id=movie.MovieID) }}'">
+        <img src="{{ url_for('static', filename=movie.PosterURL) }}" alt="{{ movie.Title }}">
+        <div class="card-info">
+            <h4>{{ movie.Title }}</h4>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+{# SERIES #}
+<h2 class="section-title">Series</h2>
+<div class="card-container">
+    {% for s in series_list %}
+    <div class="card series-card" onclick="location.href='{{ url_for('series_details', series_id=s.SeriesID) }}'">
+        <img src="{{ url_for('static', filename=s.PosterURL) }}" alt="{{ s.Title }}">
+        <div class="card-info">
+            <h4>{{ s.Title }}</h4>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

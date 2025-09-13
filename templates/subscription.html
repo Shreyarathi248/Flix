@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1 class="page-title">My Subscriptions</h1>
+
+<div class="card-container">
+    {% for s in subs %}
+    <div class="card subscription-card">
+        <h3>{{ s.PlanName }}</h3>
+        <p><strong>Start:</strong> {{ s.StartDate }}</p>
+        <p><strong>End:</strong> {{ s.EndDate }}</p>
+        <p><strong>Price:</strong> ₹{{ s.Price }}</p>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

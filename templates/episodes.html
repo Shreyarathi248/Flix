@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>{{ series.Title }} Episodes</h2>
+
+<div class="card-container">
+    {% for ep in episodes %}
+    <div class="card">
+        <h4>Season {{ ep.SeasonNo }} Ep {{ ep.EpisodeNo }}</h4>
+        <p>{{ ep.Title }} ({{ ep.Duration }} min)</p>
+    </div>
+    {% endfor %}
+</div>
+
+<h3>Actors:</h3>
+<ul>
+    {% for actor in actors %}
+    <li>{{ actor.Actor_Name }}</li>
+    {% endfor %}
+</ul>
+
+<h3>Ratings:</h3>
+<p>Average Rating: {{ avg_rating }}</p>
+{% endblock %}
